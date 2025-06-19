@@ -20,6 +20,7 @@ const orderSchema = new mongoose.Schema(
     phone: String,
     orderId: String,
     orderDate: String,
+    giftPack: { type: String, default: "No" },
     status: { type: String, default: "pending" },
   },
   { timestamps: true }

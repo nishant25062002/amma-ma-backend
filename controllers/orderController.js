@@ -5,7 +5,7 @@ import { generateOrderId } from "./globalController.js";
 // POST /api/orders
 export const createOrder = async (req, res) => {
   try {
-    const { items, name, email, address, phone } = req.body;
+    const { items, name, email, address, phone, giftPack } = req.body;
 
     if (!items || !name || !email || !address || !phone) {
       return res.status(400).json({ message: "Missing required fields" });
@@ -23,6 +23,7 @@ export const createOrder = async (req, res) => {
       phone,
       orderId,
       orderDate,
+      giftPack,
     });
     await newOrder.save();
 
@@ -50,6 +51,7 @@ export const createOrder = async (req, res) => {
           .join("")}
       </ul>
 
+      <p><strong>Gift Pack:</strong> ${giftPack}</p>
       <p><strong>Order ID:</strong> ${orderId}</p>
       <p><strong>Delivery Address:</strong> ${address}</p>
 
