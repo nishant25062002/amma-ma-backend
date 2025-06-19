@@ -14,7 +14,9 @@ export const createOrder = async (req, res) => {
     const orderDate = new Date().toLocaleString("en-IN", {
       dateStyle: "long",
       timeStyle: "short",
+      timeZone: "Asia/Kolkata",
     });
+
     const newOrder = new Order({
       items,
       name,
