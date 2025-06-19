@@ -87,3 +87,15 @@ export const getAllOrders = async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 };
+
+// GET /api/order
+export const getOrder = async (req, res) => {
+  const { orderId } = req.params;
+  try {
+    const orders = await Order.findOne({ orderId }).sort({ createdAt: -1 });
+    res.status(200).json(orders);
+  } catch (error) {
+    console.error("❌ Error fetching orders:", error.message);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
