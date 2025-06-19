@@ -29,8 +29,8 @@ app.get("/", (req, res) => {
 
 // Routes
 // app.use('/products', productRoutes);
-app.use("/orders", orderRoutes);
-app.use("/subscribers", subscriberRoutes);
+app.use("/api/orders", orderRoutes);
+app.use("/api/subscribers", subscriberRoutes);
 
 // Centralized error handler (must come before app.listen)
 app.use((err, req, res, next) => {
