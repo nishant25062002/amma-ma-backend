@@ -26,6 +26,7 @@ export const createOrder = async (req, res) => {
       giftPack,
     });
     await newOrder.save();
+    // <strong> S. No.: </strong>${index + 1}
 
     await sendEmail({
       to: email,
@@ -41,9 +42,8 @@ export const createOrder = async (req, res) => {
           .map(
             (item, index) =>
               `<li>
-                <strong> S. No.: </strong>${index + 1} 
-                <strong> — Product Name: </strong>${item.id} 
-                <strong> — Product Id: </strong> ${item.title}  
+                <strong> Product Name: </strong>${item.title} 
+                <strong> — Product Id: </strong> ${item.id}  
                 <strong> — Qty: </strong> ${item.quantity}
                 <strong> — weight: </strong> ${item.weight}
               </li>`
