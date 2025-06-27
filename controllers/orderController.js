@@ -43,7 +43,7 @@ export const createOrder = async (req, res) => {
         ${items
           .map(
             (item, index) =>
-              `<li>
+              `<li key={${index}}>
                 <strong> Product Name: </strong>${item.title} 
                 <strong> — Product Id: </strong> ${item.id}  
                 <strong> — Qty: </strong> ${item.quantity}
@@ -83,7 +83,9 @@ export const createOrder = async (req, res) => {
 export const getAllOrders = async (req, res) => {
   try {
     const orders = await Order.find().sort({ createdAt: -1 });
-    res.status(200).json(orders);
+    res
+      .status(200)
+      .json({ message: "Orders fetch successfully", data: orders });
   } catch (error) {
     console.error("❌ Error fetching orders:", error.message);
     res.status(500).json({ message: "Internal server error" });
@@ -94,8 +96,8 @@ export const getAllOrders = async (req, res) => {
 export const getOrder = async (req, res) => {
   const { orderId } = req.params;
   try {
-    const orders = await Order.findOne({ orderId }).sort({ createdAt: -1 });
-    res.status(200).json(orders);
+    const order = await Order.findOne({ orderId }).sort({ createdAt: -1 });
+    res.status(200).json({ message: "Order fetch successfully", data: order });
   } catch (error) {
     console.error("❌ Error fetching orders:", error.message);
     res.status(500).json({ message: "Internal server error" });
